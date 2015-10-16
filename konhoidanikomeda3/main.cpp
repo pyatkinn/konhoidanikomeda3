@@ -9,6 +9,7 @@
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
+#include <string.h>
 
 using std::cin;
 using std::cout;
@@ -28,7 +29,13 @@ public:
     double rKriv2();
     double rKriv3();
     double sPetl();
-    double tPereg();
+    double tPereg11();
+    double tPereg21();
+    double tPereg22();
+    double tPereg23();
+    double tPereg31();
+    double tPereg32();
+    double tPereg33();
 };
 
 
@@ -83,10 +90,92 @@ double konhoida::sPetl()
     return (a*sqrt(l*l-a*a)-2*a*l*log((1+sqrt(l*l-a*a))/a)+l*l*acos(a/l));
 }
 
-double konhoida::tPereg()
+double konhoida::tPereg11()
+{
+    return (2.35*a);
+}
+
+double konhoida::tPereg21()
+{
+    return (a*sqrt(3));
+}
+
+double konhoida::tPereg22()
+{
+    return 0;
+}
+
+double konhoida::tPereg23()
+{
+    return (-a*sqrt(3));
+}
+
+double konhoida::tPereg31()
+{
+    return (1.38*a);
+}
+
+double konhoida::tPereg32()
+{
+    return (0.57*a);
+}
+
+double konhoida::tPereg33()
+{
+    return (-1.9*a);
+}
+
+
+
+
+int getNum(int& a,char *info);
+double getNum(double& a,char *info);
+void menu();
+
+
+int getNum(int& a,char *info);
+double getNum(double& a,char *info);
+void menu();
+
+int getNum(int& a,char *info)
+{
+    int data;
+    std::cout<<info<<endl;
+    std::cin>>data;
+    if (!std::cin.good())
+    {
+        std::cout<<"error"<<std::endl;
+        std::cin.clear();
+        return -1;
+    }
+    a=data;
+    return 0;
+    
+}
+
+double getNum(double& a,char *info)
+{
+    double data;
+    std::cout<<info<<endl;
+    std::cin>>data;
+    if (!std::cin.good())
+    {
+        std::cout<<"error"<<std::endl;
+        std::cin.clear();
+        return -1;
+    }
+    a=data;
+    return 0;
+    
+}
+
+void menu()
 {
     
 }
+
+
+
 
 
 
