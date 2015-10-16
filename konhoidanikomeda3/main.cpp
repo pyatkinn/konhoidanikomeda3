@@ -21,7 +21,8 @@ private:
 public:
     konhoida(double a=1,double l=1);
     ~konhoida();
-    double get() const;
+    double geta() const;
+    double getl() const;
     void set(double a,double l);
     double yValue(double x);
     double distination(double angle);
@@ -49,9 +50,14 @@ konhoida::~konhoida()
 {
 }
 
-double konhoida:: get() const
+double konhoida:: geta() const
 {
     return a;
+}
+
+double konhoida::getl() const
+{
+    return l;
 }
 
 void konhoida::set(double a,double l)
@@ -171,8 +177,108 @@ double getNum(double& a,char *info)
 
 void menu()
 {
-    
+    std::cout<<"Choose your task"<<endl;
+    std::cout<<"1 - get a,l"<<endl;
+    std::cout<<"2 - set a,l"<<endl;
+    std::cout<<"3 - find y"<<endl;
+    std::cout<<"4 - distination to the centre"<<endl;
+    std::cout<<"5 - radius of curvature"<<endl;
+    std::cout<<"6 - square of kink"<<endl;
+    std::cout<<"7 - point of nip"<<endl;
+    std::cout<<"0 - quit"<<endl;
 }
+
+
+int main()
+{
+    konhoida k(1,1);
+    while (1)
+    {
+        menu();
+        int res=0;
+        int menu=0;
+        res = getNum(menu,"");
+        if (res<0)
+            break;
+        else
+            switch (menu)
+        {
+            case 0:
+            {
+                exit(0);
+                break;
+            }
+            case 1:
+            {
+                double a= k.geta();
+                double l= k.getl();
+                cout << "a:  " << a <<"\nl:  "<<l<<endl;
+                break;
+            }
+            case 2:
+            {
+                int a = 0;
+                int l=0;
+                getNum(a, "write a: ");
+                getNum(l,"write l: ");
+                k.set(a,l);
+                break;
+            }
+            case 3:
+            {
+                double x;
+                getNum(x, "X: ");
+                cout << "Y:" << k.yValue(x) << endl;
+                break;
+            }
+            case 4:
+            {
+                double angle;
+                getNum(angle, "Angle: ");
+                cout << "Distance:" << k.distination(angle) << endl;
+                break;
+            }
+            case 5:
+            {
+                cout << "Radius 1: " << k.rKriv1() << endl;
+                cout<<"Radius 2: "<<k.rKriv2()<<endl;
+                cout<<"Radius 3: "<<k.rKriv3()<<endl;
+                break;
+            }
+            case 6:
+            {
+                cout << "Square: " << k.sPetl()<< endl;
+                break;
+            }
+            case 7:
+            {
+                double a=k.geta();
+                double l=k.getl();
+                if (a>l)
+                {
+                    cout<<"X: "<<k.tPereg11()<<"\nY: "<<k.yValue(k.tPereg11())<<endl;
+                }
+                if (a==l)
+                {
+                    cout<<"X1: "<<k.tPereg21()<<"\nY1: "<<k.yValue(k.tPereg21())<<"\nX2: "<<k.tPereg22()<<"\nY2: "<<k.yValue(k.tPereg22())<<"\nX3: "<<k.tPereg23()<<"\nY3: "<<k.yValue(k.tPereg23())<<endl;
+                }
+                if (a<l)
+                {
+                    cout<<"X1: "<<k.tPereg31()<<"\nY1: "<<k.yValue(k.tPereg31())<<"\nX2: "<<k.tPereg32()<<"\nY2: "<<k.yValue(k.tPereg32())<<"\nX3: "<<k.tPereg33()<<"\nY3: "<<k.yValue(k.tPereg33())<<endl;
+                }
+
+            }
+            default:
+            {
+                menu;
+                break;
+            }
+        }
+    }
+    system("pause");
+    return 0;
+}
+     
 
 
 
